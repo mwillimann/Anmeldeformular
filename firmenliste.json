@@ -1,0 +1,142 @@
+[
+  {
+    "name": "Alpina Bau AG",
+    "uid": "CHE-100.001.001",
+    "address": "Hauptstrasse 1",
+    "zip": "8000",
+    "city": "Zürich"
+  },
+  {
+    "name": "Berner Energie GmbH",
+    "uid": "CHE-100.001.002",
+    "address": "Marktgasse 10",
+    "zip": "3000",
+    "city": "Bern"
+  },
+  {
+    "name": "Helvetic Tech Solutions",
+    "uid": "CHE-100.001.003",
+    "address": "Technoparkstrasse 5",
+    "zip": "8400",
+    "city": "Winterthur"
+  },
+  {
+    "name": "Gastro Suisse AG",
+    "uid": "CHE-100.001.004",
+    "address": "Seestrasse 25",
+    "zip": "6000",
+    "city": "Luzern"
+  },
+  {
+    "name": "Romandie Transport Sàrl",
+    "uid": "CHE-100.001.005",
+    "address": "Rue Centrale 3",
+    "zip": "1000",
+    "city": "Lausanne"
+  },
+  {
+    "name": "Innovatis Consulting AG",
+    "uid": "CHE-100.001.006",
+    "address": "Industriestrasse 12",
+    "zip": "9000",
+    "city": "St. Gallen"
+  },
+  {
+    "name": "Alpenblick Treuhand GmbH",
+    "uid": "CHE-100.001.007",
+    "address": "Bahnhofplatz 2",
+    "zip": "6300",
+    "city": "Zug"
+  },
+  {
+    "name": "Argovia Engineering",
+    "uid": "CHE-100.001.008",
+    "address": "Aarauerstrasse 8",
+    "zip": "5000",
+    "city": "Aarau"
+  },
+  {
+    "name": "Schweizer Holzbau AG",
+    "uid": "CHE-100.001.009",
+    "address": "Forstweg 11",
+    "zip": "9500",
+    "city": "Wil"
+  },
+  {
+    "name": "Lucerna MedTech GmbH",
+    "uid": "CHE-100.001.010",
+    "address": "Klinikstrasse 6",
+    "zip": "6010",
+    "city": "Kriens"
+  },
+  {
+    "name": "Valais Food AG",
+    "uid": "CHE-100.001.011",
+    "address": "Rue du Marché 1",
+    "zip": "1950",
+    "city": "Sion"
+  },
+  {
+    "name": "Grischa Energie GmbH",
+    "uid": "CHE-100.001.012",
+    "address": "Plessurstrasse 4",
+    "zip": "7000",
+    "city": "Chur"
+  },
+  {
+    "name": "TicinoDesign Sàrl",
+    "uid": "CHE-100.001.013",
+    "address": "Via Roma 12",
+    "zip": "6900",
+    "city": "Lugano"
+  },
+  {
+    "name": "HelioTech AG",
+    "uid": "CHE-100.001.014",
+    "address": "Solarstrasse 7",
+    "zip": "3012",
+    "city": "Bern"
+  },
+  {
+    "name": "Neuchâtel Digital Sàrl",
+    "uid": "CHE-100.001.015",
+    "address": "Rue de l’Université 2",
+    "zip": "2000",
+    "city": "Neuchâtel"
+  },
+  {
+    "name": "Zurich Software AG",
+    "uid": "CHE-100.001.016",
+    "address": "Hardturmstrasse 126",
+    "zip": "8005",
+    "city": "Zürich"
+  },
+  {
+    "name": "Basilea Lab AG",
+    "uid": "CHE-100.001.017",
+    "address": "Forschungsweg 3",
+    "zip": "4056",
+    "city": "Basel"
+  },
+  {
+    "name": "Fribourg Robotics",
+    "uid": "CHE-100.001.018",
+    "address": "Avenue du Midi 9",
+    "zip": "1700",
+    "city": "Fribourg"
+  },
+  {
+    "name": "Obwalden Baugenossenschaft",
+    "uid": "CHE-100.001.019",
+    "address": "Dorfstrasse 15",
+    "zip": "6060",
+    "city": "Sarnen"
+  },
+  {
+    "name": "Schaffhauser Metallbau",
+    "uid": "CHE-100.001.020",
+    "address": "Rheinweg 1",
+    "zip": "8200",
+    "city": "Schaffhausen"
+  }
+]

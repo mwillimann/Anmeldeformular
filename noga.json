@@ -1,0 +1,22 @@
+[
+  { "code": "01130", "name": "Anbau von Gemüse und Melonen" },
+  { "code": "02100", "name": "Forstwirtschaft und Holzeinschlag" },
+  { "code": "10130", "name": "Fleischverarbeitung" },
+  { "code": "10511", "name": "Herstellung von Käse" },
+  { "code": "10710", "name": "Herstellung von Backwaren" },
+  { "code": "14130", "name": "Herstellung von Arbeitskleidung" },
+  { "code": "16230", "name": "Herstellung von Bauholz" },
+  { "code": "18110", "name": "Druckgewerbe" },
+  { "code": "22290", "name": "Herstellung von Kunststoffwaren" },
+  { "code": "25110", "name": "Herstellung von Metallkonstruktionen" },
+  { "code": "26110", "name": "Herstellung von elektronischen Bauelementen" },
+  { "code": "27110", "name": "Herstellung von Elektromotoren" },
+  { "code": "30200", "name": "Herstellung von Eisenbahnmaterial" },
+  { "code": "35300", "name": "Versorgung mit Dampf und Klimaanlagen" },
+  { "code": "41200", "name": "Bau von Wohngebäuden" },
+  { "code": "42110", "name": "Bau von Strassen" },
+  { "code": "47110", "name": "Detailhandel in Verkaufsräumen" },
+  { "code": "62010", "name": "Erbringung von Dienstleistungen der Informatik" },
+  { "code": "70220", "name": "Unternehmensberatung" },
+  { "code": "86101", "name": "Betrieb von Krankenhäusern" }
+]
