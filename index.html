@@ -1,136 +1,192 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
   <title>Anmeldung Konjunkturumfrage</title>
   <style>
-    body { font-family: sans-serif; padding: 2rem; }
-    .section { display: none; }
-    .section.active { display: block; }
-    label { display: block; margin-top: 1rem; }
-    input, select, textarea { width: 100%; padding: 0.5rem; margin-top: 0.2rem; }
-    button { margin-top: 1.5rem; padding: 0.7rem 1.5rem; }
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #99CAD5;
+      margin: 0;
+      padding: 2rem;
+    }
+    .form-section {
+      display: none;
+      background: white;
+      padding: 2rem;
+      border-radius: 8px;
+      max-width: 600px;
+      margin: auto;
+    }
+    .form-section.active {
+      display: block;
+    }
+    label {
+      display: block;
+      margin-top: 1rem;
+    }
+    input, select, textarea, button {
+      width: 100%;
+      padding: 0.5rem;
+      margin-top: 0.5rem;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background-color: #007099;
+      color: white;
+      font-weight: bold;
+      margin-top: 2rem;
+    }
   </style>
 </head>
 <body>
-  <h1>Anmeldung zur Konjunkturumfrage der KOF</h1>
 
-  <!-- Angaben zur Firma -->
-  <div class="section active" id="firma">
-    <h2>1. Angaben zur Firma</h2>
-    <label for="firmaName">Firmenname</label>
-    <input type="text" id="firmaName" name="firmaName" autocomplete="off" oninput="sucheFirma()" />
+  <form id="anmeldungForm">
 
-    <label for="uid">UID</label>
-    <input type="text" id="uid" name="uid" readonly />
+    <!-- Firma -->
+    <div id="firmaSection" class="form-section active">
+      <h2>Angaben zur Firma</h2>
+      <label for="firma">Firmenname</label>
+      <input type="text" id="firma" name="firma" autocomplete="off" list="firmaListe" required>
+      <datalist id="firmaListe"></datalist>
 
-    <label for="adresse">Adresse</label>
-    <input type="text" id="adresse" name="adresse" readonly />
+      <label for="uid">UID</label>
+      <input type="text" id="uid" name="uid" readonly>
 
-    <label for="plz">Postleitzahl</label>
-    <input type="text" id="plz" name="plz" readonly />
+      <label for="adresse">Firmenadresse</label>
+      <input type="text" id="adresse" name="adresse" readonly>
 
-    <label for="ort">Ort</label>
-    <input type="text" id="ort" name="ort" readonly />
+      <label for="plz">Postleitzahl</label>
+      <input type="text" id="plz" name="plz" readonly>
 
-    <button onclick="zeigeAbschnitt('kontakt')">Bestätigen</button>
-  </div>
+      <label for="ort">Ort</label>
+      <input type="text" id="ort" name="ort" readonly>
 
-  <!-- Angaben zur Kontaktperson -->
-  <div class="section" id="kontakt">
-    <h2>2. Angaben zur Kontaktperson</h2>
-    <label for="anrede">Anrede</label>
-    <select id="anrede" name="anrede">
-      <option value="Herr">Herr</option>
-      <option value="Frau">Frau</option>
-    </select>
-
-    <label for="titel">Titel</label>
-    <input type="text" id="titel" name="titel" />
-
-    <label for="vorname">Vorname</label>
-    <input type="text" id="vorname" name="vorname" />
-
-    <label for="nachname">Nachname</label>
-    <input type="text" id="nachname" name="nachname" />
-
-    <label for="funktion">Abteilung/Funktion</label>
-    <input type="text" id="funktion" name="funktion" />
-
-    <label for="email">E-Mail</label>
-    <input type="email" id="email" name="email" />
-
-    <label for="telefon">Telefon</label>
-    <input type="tel" id="telefon" name="telefon" />
-
-    <label for="mobile">Mobile</label>
-    <input type="tel" id="mobile" name="mobile" />
-
-    <button onclick="zeigeAbschnitt('unternehmen')">Bestätigen</button>
-  </div>
-
-  <!-- Unternehmensangaben -->
-  <div class="section" id="unternehmen">
-    <h2>3. Unternehmensangaben</h2>
-    <div id="branchenfelder">
-      <!-- Diese Felder werden dynamisch generiert -->
+      <button type="button" onclick="nextSection('firmaSection', 'kontaktSection')">Bestätigen</button>
     </div>
-    <button onclick="zeigeAbschnitt('bemerkung')">Bestätigen</button>
-  </div>
 
-  <!-- Bemerkungen -->
-  <div class="section" id="bemerkung">
-    <h2>4. Bemerkungen</h2>
-    <label for="bemerkungstext">Ihre Bemerkungen</label>
-    <textarea id="bemerkungstext" name="bemerkungstext" rows="6"></textarea>
-    <button onclick="absenden()">Senden</button>
-  </div>
+    <!-- Kontaktperson -->
+    <div id="kontaktSection" class="form-section">
+      <h2>Angaben zur Kontaktperson</h2>
+      <label for="anrede">Anrede</label>
+      <select id="anrede" name="anrede">
+        <option>Herr</option>
+        <option>Frau</option>
+      </select>
+
+      <label for="titel">Titel</label>
+      <input type="text" id="titel" name="titel">
+
+      <label for="vorname">Vorname</label>
+      <input type="text" id="vorname" name="vorname" required>
+
+      <label for="nachname">Nachname</label>
+      <input type="text" id="nachname" name="nachname" required>
+
+      <label for="funktion">Abteilung/Funktion</label>
+      <input type="text" id="funktion" name="funktion">
+
+      <label for="email">E-Mail</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="telefon">Telefon</label>
+      <input type="tel" id="telefon" name="telefon">
+
+      <label for="mobile">Mobile</label>
+      <input type="tel" id="mobile" name="mobile">
+
+      <button type="button" onclick="nextSection('kontaktSection', 'unternehmenSection')">Bestätigen</button>
+    </div>
+
+    <!-- Unternehmensangaben -->
+    <div id="unternehmenSection" class="form-section">
+      <h2>Unternehmensangaben</h2>
+      <div id="branchenContainer">
+        <div class="branche">
+          <label>NOGA Branche 1</label>
+          <input type="text" class="noga" list="nogaList">
+          <input type="number" placeholder="Anzahl Mitarbeiter">
+        </div>
+        <div class="branche">
+          <label>NOGA Branche 2</label>
+          <input type="text" class="noga" list="nogaList">
+          <input type="number" placeholder="Anzahl Mitarbeiter">
+        </div>
+        <div class="branche">
+          <label>NOGA Branche 3</label>
+          <input type="text" class="noga" list="nogaList">
+          <input type="number" placeholder="Anzahl Mitarbeiter">
+        </div>
+      </div>
+      <datalist id="nogaList"></datalist>
+      <button type="button" onclick="nextSection('unternehmenSection', 'bemerkungenSection')">Bestätigen</button>
+    </div>
+
+    <!-- Bemerkungen -->
+    <div id="bemerkungenSection" class="form-section">
+      <h2>Bemerkungen</h2>
+      <label for="bemerkungen">Ihre Bemerkungen</label>
+      <textarea id="bemerkungen" name="bemerkungen" rows="5"></textarea>
+
+      <button type="submit">Senden</button>
+    </div>
+
+  </form>
 
   <script>
-    function zeigeAbschnitt(id) {
-      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-      document.getElementById(id).classList.add('active');
-
-      if (id === 'unternehmen') {
-        const feld = document.getElementById('branchenfelder');
-        feld.innerHTML = '';
-        for (let i = 1; i <= 3; i++) {
-          feld.innerHTML += `
-            <label for="noga${i}">Branche ${i} (NOGA-Code)</label>
-            <input type="text" id="noga${i}" name="noga${i}" oninput="sucheNoga(${i})" />
-            <label for="mitarbeiter${i}">Mitarbeitende in Branche ${i}</label>
-            <input type="number" id="mitarbeiter${i}" name="mitarbeiter${i}" min="0" />
-          `;
-        }
-      }
+    function nextSection(current, next) {
+      document.getElementById(current).classList.remove('active');
+      document.getElementById(next).classList.add('active');
     }
 
-    function absenden() {
-      alert('Vielen Dank für Ihre Anmeldung!');
-      // Hier könnte ein Serveraufruf erfolgen
-    }
+    // Zefix Autocomplete API – simuliert mit Beispielnamen
+    document.getElementById('firma').addEventListener('input', async function () {
+      const query = this.value;
+      if (query.length < 3) return;
+      const resp = await fetch(`https://www.zefix.ch/ZefixREST/api/v1/company/search?name=${encodeURIComponent(query)}`);
+      if (!resp.ok) return;
+      const data = await resp.json();
 
-    // Dummy-Funktionen zur Illustration
-    function sucheFirma() {
-      const name = document.getElementById('firmaName').value;
-      if (name.length > 3) {
-        // Beispiel: Zefix API verwenden und Felder ausfüllen (nur symbolisch)
-        document.getElementById('uid').value = 'CHE-123.456.789';
-        document.getElementById('adresse').value = 'Musterstrasse 1';
-        document.getElementById('plz').value = '8000';
-        document.getElementById('ort').value = 'Zürich';
-      }
-    }
+      const liste = document.getElementById('firmaListe');
+      liste.innerHTML = '';
+      data.companies?.forEach(entry => {
+        const option = document.createElement('option');
+        option.value = entry.name;
+        option.dataset.uid = entry.uid;
+        liste.appendChild(option);
+      });
+    });
 
-    function sucheNoga(index) {
-      const input = document.getElementById(`noga${index}`);
-      if (input.value.length > 2) {
-        // API-Aufruf möglich
-        input.value = '62010 - Erbringung von Dienstleistungen der Informationstechnologie';
-      }
-    }
+    document.getElementById('firma').addEventListener('change', async function () {
+      const name = this.value;
+      const option = Array.from(document.getElementById('firmaListe').options).find(opt => opt.value === name);
+      if (!option) return;
+      const uid = option.dataset.uid;
+      document.getElementById('uid').value = uid;
+      const resp = await fetch(`https://www.zefix.ch/ZefixREST/api/v1/company/uid/${uid}`);
+      const data = await resp.json();
+      if (!data || !data.address) return;
+      document.getElementById('adresse').value = `${data.address.street} ${data.address.houseNumber || ''}`;
+      document.getElementById('plz').value = data.address.zip;
+      document.getElementById('ort').value = data.address.city;
+    });
+
+    // Beispielhafte NOGA-Liste (simuliert)
+    const nogaCodes = [
+      { code: '011100', name: 'Anbau von Getreide (ohne Reis), Hülsenfrüchten und Ölsaaten' },
+      { code: '620100', name: 'Erbringung von Dienstleistungen der Informationstechnologie' },
+      { code: '471100', name: 'Detailhandel in nicht spezialisierten Geschäften' }
+    ];
+
+    const nogaList = document.getElementById('nogaList');
+    nogaCodes.forEach(noga => {
+      const opt = document.createElement('option');
+      opt.value = `${noga.code} - ${noga.name}`;
+      nogaList.appendChild(opt);
+    });
   </script>
+
 </body>
 </html>
 
