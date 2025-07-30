@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anmeldung Konjunkturumfrage</title>
+  <style>
+    body { font-family: sans-serif; padding: 2rem; }
+    .section { display: none; }
+    .section.active { display: block; }
+    label { display: block; margin-top: 1rem; }
+    input, select, textarea { width: 100%; padding: 0.5rem; margin-top: 0.2rem; }
+    button { margin-top: 1.5rem; padding: 0.7rem 1.5rem; }
+  </style>
+</head>
+<body>
+  <h1>Anmeldung zur Konjunkturumfrage der KOF</h1>
+
+  <!-- Angaben zur Firma -->
+  <div class="section active" id="firma">
+    <h2>1. Angaben zur Firma</h2>
+    <label for="firmaName">Firmenname</label>
+    <input type="text" id="firmaName" name="firmaName" autocomplete="off" oninput="sucheFirma()" />
+
+    <label for="uid">UID</label>
+    <input type="text" id="uid" name="uid" readonly />
+
+    <label for="adresse">Adresse</label>
+    <input type="text" id="adresse" name="adresse" readonly />
+
+    <label for="plz">Postleitzahl</label>
+    <input type="text" id="plz" name="plz" readonly />
+
+    <label for="ort">Ort</label>
+    <input type="text" id="ort" name="ort" readonly />
+
+    <button onclick="zeigeAbschnitt('kontakt')">Bestätigen</button>
+  </div>
+
+  <!-- Angaben zur Kontaktperson -->
+  <div class="section" id="kontakt">
+    <h2>2. Angaben zur Kontaktperson</h2>
+    <label for="anrede">Anrede</label>
+    <select id="anrede" name="anrede">
+      <option value="Herr">Herr</option>
+      <option value="Frau">Frau</option>
+    </select>
+
+    <label for="titel">Titel</label>
+    <input type="text" id="titel" name="titel" />
+
+    <label for="vorname">Vorname</label>
+    <input type="text" id="vorname" name="vorname" />
+
+    <label for="nachname">Nachname</label>
+    <input type="text" id="nachname" name="nachname" />
+
+    <label for="funktion">Abteilung/Funktion</label>
+    <input type="text" id="funktion" name="funktion" />
+
+    <label for="email">E-Mail</label>
+    <input type="email" id="email" name="email" />
+
+    <label for="telefon">Telefon</label>
+    <input type="tel" id="telefon" name="telefon" />
+
+    <label for="mobile">Mobile</label>
+    <input type="tel" id="mobile" name="mobile" />
+
+    <button onclick="zeigeAbschnitt('unternehmen')">Bestätigen</button>
+  </div>
+
+  <!-- Unternehmensangaben -->
+  <div class="section" id="unternehmen">
+    <h2>3. Unternehmensangaben</h2>
+    <div id="branchenfelder">
+      <!-- Diese Felder werden dynamisch generiert -->
+    </div>
+    <button onclick="zeigeAbschnitt('bemerkung')">Bestätigen</button>
+  </div>
+
+  <!-- Bemerkungen -->
+  <div class="section" id="bemerkung">
+    <h2>4. Bemerkungen</h2>
+    <label for="bemerkungstext">Ihre Bemerkungen</label>
+    <textarea id="bemerkungstext" name="bemerkungstext" rows="6"></textarea>
+    <button onclick="absenden()">Senden</button>
+  </div>
+
+  <script>
+    function zeigeAbschnitt(id) {
+      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+
+      if (id === 'unternehmen') {
+        const feld = document.getElementById('branchenfelder');
+        feld.innerHTML = '';
+        for (let i = 1; i <= 3; i++) {
+          feld.innerHTML += `
+            <label for="noga${i}">Branche ${i} (NOGA-Code)</label>
+            <input type="text" id="noga${i}" name="noga${i}" oninput="sucheNoga(${i})" />
+            <label for="mitarbeiter${i}">Mitarbeitende in Branche ${i}</label>
+            <input type="number" id="mitarbeiter${i}" name="mitarbeiter${i}" min="0" />
+          `;
+        }
+      }
+    }
+
+    function absenden() {
+      alert('Vielen Dank für Ihre Anmeldung!');
+      // Hier könnte ein Serveraufruf erfolgen
+    }
+
+    // Dummy-Funktionen zur Illustration
+    function sucheFirma() {
+      const name = document.getElementById('firmaName').value;
+      if (name.length > 3) {
+        // Beispiel: Zefix API verwenden und Felder ausfüllen (nur symbolisch)
+        document.getElementById('uid').value = 'CHE-123.456.789';
+        document.getElementById('adresse').value = 'Musterstrasse 1';
+        document.getElementById('plz').value = '8000';
+        document.getElementById('ort').value = 'Zürich';
+      }
+    }
+
+    function sucheNoga(index) {
+      const input = document.getElementById(`noga${index}`);
+      if (input.value.length > 2) {
+        // API-Aufruf möglich
+        input.value = '62010 - Erbringung von Dienstleistungen der Informationstechnologie';
+      }
+    }
+  </script>
+</body>
+</html>
+
