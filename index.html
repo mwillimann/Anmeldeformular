@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Anmeldung Konjunkturumfrage</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.5/awesomplete.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.5/awesomplete.min.css">
   <style>
     body {
       background-color: #99CAD5;
@@ -34,19 +34,19 @@
   <section id="firma">
     <h2>Angaben zur Firma</h2>
     <label for="firmenname">Firmenname:</label>
-    <input id="firmenname" name="firmenname" class="awesomplete" autocomplete="off" />
+    <input id="firmenname" name="firmenname" class="awesomplete" autocomplete="off">
 
     <label for="uid">UID:</label>
-    <input id="uid" readonly />
+    <input id="uid" readonly>
 
     <label for="adresse">Adresse:</label>
-    <input id="adresse" readonly />
+    <input id="adresse" readonly>
 
     <label for="plz">PLZ:</label>
-    <input id="plz" readonly />
+    <input id="plz" readonly>
 
     <label for="ort">Ort:</label>
-    <input id="ort" readonly />
+    <input id="ort" readonly>
 
     <button onclick="zeigeAbschnitt('kontakt')">Bestätigen</button>
   </section>
@@ -60,25 +60,25 @@
     </select>
 
     <label for="titel">Titel:</label>
-    <input id="titel" />
+    <input id="titel">
 
     <label for="vorname">Vorname:</label>
-    <input id="vorname" />
+    <input id="vorname">
 
     <label for="nachname">Nachname:</label>
-    <input id="nachname" />
+    <input id="nachname">
 
     <label for="funktion">Abteilung/Funktion:</label>
-    <input id="funktion" />
+    <input id="funktion">
 
     <label for="email">E-Mail:</label>
-    <input id="email" type="email" />
+    <input id="email" type="email">
 
     <label for="telefon">Telefon:</label>
-    <input id="telefon" />
+    <input id="telefon">
 
     <label for="mobile">Mobile:</label>
-    <input id="mobile" />
+    <input id="mobile">
 
     <button onclick="zeigeAbschnitt('unternehmen')">Bestätigen</button>
   </section>
@@ -86,22 +86,22 @@
   <section id="unternehmen" style="display:none">
     <h2>Unternehmensangaben</h2>
     <label for="noga1">NOGA 1:</label>
-    <input id="noga1" class="awesomplete" autocomplete="off" />
+    <input id="noga1" class="awesomplete" autocomplete="off">
 
     <label for="noga2">NOGA 2:</label>
-    <input id="noga2" class="awesomplete" autocomplete="off" />
+    <input id="noga2" class="awesomplete" autocomplete="off">
 
     <label for="noga3">NOGA 3:</label>
-    <input id="noga3" class="awesomplete" autocomplete="off" />
+    <input id="noga3" class="awesomplete" autocomplete="off">
 
     <label for="mitarbeiter1">Mitarbeitende NOGA 1:</label>
-    <input id="mitarbeiter1" type="number" />
+    <input id="mitarbeiter1" type="number">
 
     <label for="mitarbeiter2">Mitarbeitende NOGA 2:</label>
-    <input id="mitarbeiter2" type="number" />
+    <input id="mitarbeiter2" type="number">
 
     <label for="mitarbeiter3">Mitarbeitende NOGA 3:</label>
-    <input id="mitarbeiter3" type="number" />
+    <input id="mitarbeiter3" type="number">
 
     <button onclick="zeigeAbschnitt('bemerkung')">Bestätigen</button>
   </section>
@@ -120,42 +120,36 @@
     const nogaURL = "https://raw.githubusercontent.com/mwillimann/Anmeldeformular/refs/heads/main/noga.json";
 
     function zeigeAbschnitt(id) {
-      document.querySelectorAll("section").forEach((s) => (s.style.display = "none"));
+      document.querySelectorAll("section").forEach(s => s.style.display = "none");
       document.getElementById(id).style.display = "block";
     }
 
     // Firmen Autocomplete + Autofill
     fetch(firmenURL)
-      .then((res) => res.json())
-      .then((data) => {
-        const firmennamen = data.map((f) => f.name);
+      .then(res => res.json())
+      .then(data => {
+        const firmennamen = data.map(f => f.name);
         const input = document.getElementById("firmenname");
         new Awesomplete(input, { list: firmennamen });
 
-        input.addEventListener("awesomplete-selectcomplete", () => {
-          const match = data.find((f) => f.name === input.value);
+        input.addEventListener("change", () => {
+          const match = data.find(f => f.name === input.value);
           if (match) {
             document.getElementById("uid").value = match.uid;
             document.getElementById("adresse").value = match.address;
             document.getElementById("plz").value = match.zip;
             document.getElementById("ort").value = match.city;
-          } else {
-            // Felder löschen, falls kein Match
-            document.getElementById("uid").value = "";
-            document.getElementById("adresse").value = "";
-            document.getElementById("plz").value = "";
-            document.getElementById("ort").value = "";
           }
         });
       });
 
     // NOGA Autocomplete
     fetch(nogaURL)
-      .then((res) => res.json())
-      .then((data) => {
-        const eintraege = data.map((n) => `${n.code} ${n.name}`);
-        ["noga1", "noga2", "noga3"].forEach((id) => {
-          new Awesomplete(document.getElementById(id), { list: eintraege });
+      .then(res => res.json())
+      .then(data => {
+        const einträge = data.map(n => `${n.code} ${n.name}`);
+        ["noga1", "noga2", "noga3"].forEach(id => {
+          new Awesomplete(document.getElementById(id), { list: einträge });
         });
       });
   </script>
